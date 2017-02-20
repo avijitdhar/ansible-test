@@ -1,0 +1,26 @@
+---
+- hosts: aws
+  user: root
+  tasks:
+    - name: LVM installation 
+      yum: name=lvm2 state=latest     
+    - name: vg creation 
+      lvg: 
+            vg: vgtest
+            pvs: /dev/xvdb1
+    - name: LV crate
+      lvol:
+             vg: vgtest
+             lv: testlv
+             size: 1G 
+    - name: create file system
+      filesystem: 
+        fstype: ext4
+        dev: /dev/vgtest/testlv
+    - name: mount lv
+      mount: 
+        name: /data
+        src: /dev/vgtest/testlv
+        fstype: ext4
+        state: mounted
+                  

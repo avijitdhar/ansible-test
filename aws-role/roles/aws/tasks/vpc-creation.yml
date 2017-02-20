@@ -1,0 +1,27 @@
+---
+   - name: VPC creation 
+     ec2_vpc: 
+        state: preset
+        cidr_block: 10.0.0.0/16
+        resource_tags: ansible-test
+        region: us-east-1
+        subnets:
+           - cidr: 10.0.1.0/24
+             az: us-east-1a
+             resource_tags: '{  "Environment": "Development", "Name" : "Public Subnet" }'
+           - cidr: 10.0.2.0/24
+             az: us-east-1b
+             resource_tags: '{  "Environment": "Development", "Name" : "Private Subnet" }'
+        internet_gateway: true
+        route_tables:
+           - subnet: 
+                - 10.0.1.0/24
+             routes: 
+                - dest: 0.0.0.0/0 
+                  gw: igw
+           - subnet:
+                - 10.0.2.0/24
+             routes: 
+                - dest: 0.0.0.0/0
+                  gw: igw
+     register: vpc       

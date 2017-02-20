@@ -1,0 +1,21 @@
+---
+# vars file for aws
+key_name: ansible-aws-key
+instance_type: t2.micro
+security_group: avijit_ansible_test1_sg
+image: ami-9e7bb788
+region: us-east-1
+subnet-id: subnet-93120ce5
+
+# Volume details 
+#- device_name: /dev/sda1
+#    volume_size: 100
+#    device_type: io1
+#    iops: 3000
+#    delete_on_termination: true
+#- device_name: /dev/sdb
+#  ephemeral: ephemeral0
+instance: i-0588d39080f797427
+disk_size: 3
+volume_type: gp2 
+disk_name: /dev/sdf

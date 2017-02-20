@@ -1,0 +1,4 @@
+---
+# tasks file for aws
+#- include: vpc-creation.yml
+- include: ec2-install.yml

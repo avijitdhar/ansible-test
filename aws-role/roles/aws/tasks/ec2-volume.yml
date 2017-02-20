@@ -1,0 +1,7 @@
+- ec2_vol:
+    instance: "{{ instance-id }}"
+    volume_size: 5
+    device_name: /dev/xvdf
+    delete_on_termination: yes
+    register: ec2_vol
+   
